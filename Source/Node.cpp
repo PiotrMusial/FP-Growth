@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "Node.hpp"
 
 Node::Node() {

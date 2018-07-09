@@ -9,14 +9,14 @@
 class FPTree {
 private:
     Node *root; // null
-    vector<Node*> nodes; // wierzcho³ki od nulla
+    vector<Node*> nodes; // wierzchoÂ³ki od nulla
     vector<Node*> headerTable; // wektor wszystkich wierzcholkow o innych adresach
 public:
 	FPTree();
     const vector<Node*> & getHeaderTable();
-    //od obecnego wskaŸnika idzie w górê, dopóki nie napotka nulla (korzenia), i dodaje wskaŸniki na wierzcho³ki
+    //od obecnego wskaÅ¸nika idzie w gÃ³rÃª, dopÃ³ki nie napotka nulla (korzenia), i dodaje wskaÅ¸niki na wierzchoÂ³ki
     void setPath(Node *&n, Node *&wsk);
-    // dodaje wierzcho³ek do drzewa oraz do header table
+    // dodaje wierzchoÂ³ek do drzewa oraz do header table
     void addNodeToTreeAndHT(Node *&n, Node *&wsk);
     // dodaje wierzcholek tylko do drzewa
     void addNodeToTree(Node *&n, Node *&wsk);

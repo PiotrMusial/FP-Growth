@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "StringTokenizer.hpp"
 
 StringTokenizer::StringTokenizer(string strIn) {

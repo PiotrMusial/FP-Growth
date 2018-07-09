@@ -7,9 +7,9 @@ using namespace std;
 
 class Node {
 private:
-    Node *up; // wskaŸnik na ojca
-    vector<Node*> down; // wektor synów wierzcho³ka
-    vector<string> path; // œcie¿ka wierzcho³ka
+    Node *up; // wskaÅ¸nik na ojca
+    vector<Node*> down; // wektor synÃ³w wierzchoÂ³ka
+    vector<string> path; // Å“cieÂ¿ka wierzchoÂ³ka
     int counter; // licznik
     string item; // id przedmiotu (przedmiot)
 public:

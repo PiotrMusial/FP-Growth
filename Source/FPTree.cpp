@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "FPTree.hpp"
 
 FPTree::FPTree() {
@@ -9,7 +8,7 @@ const vector<Node*> & FPTree::getHeaderTable() {
     return headerTable;
 }
 
-//od obecnego wskaŸnika idzie w górê, dopóki nie napotka nulla (korzenia), i dodaje wskaŸniki na wierzcho³ki
+//od obecnego wskaÅ¸nika idzie w gÃ³rÃª, dopÃ³ki nie napotka nulla (korzenia), i dodaje wskaÅ¸niki na wierzchoÂ³ki
 void FPTree::setPath(Node *&n, Node *&wsk) {
     while(n->getUp() != NULL) {
         wsk->addPath(n->getUp()->getItem());
@@ -17,7 +16,7 @@ void FPTree::setPath(Node *&n, Node *&wsk) {
     }
 }
 
-// dodaje wierzcho³ek do drzewa oraz do header table
+// dodaje wierzchoÂ³ek do drzewa oraz do header table
 void FPTree::addNodeToTreeAndHT(Node *&n, Node *&wsk) {
     n->setUp(wsk);
     n->addToDown(NULL);
@@ -40,46 +39,46 @@ void FPTree::sortHT() {
 }
 
 void FPTree::insertNode(queue<string> &items) {
-    Node *wsk = new Node(); // tymczasowy wskaŸnik
+    Node *wsk = new Node(); // tymczasowy wskaÅ¸nik
 
     for(int i = 0; !items.empty(); i++) {
-        Node *n = new Node(); // nowy wierzcho³ek (przedmiot)
-        n->setItem(items.front()); // ustawia wskaŸnik na przedmiot
+        Node *n = new Node(); // nowy wierzchoÂ³ek (przedmiot)
+        n->setItem(items.front()); // ustawia wskaÅ¸nik na przedmiot
         items.pop();
 
-        if(i == 0) { // je¿eli podaje pierwszy przedmiot z transakcji
-            if(nodes.size() == 0) { // je¿eli korzeñ (null) nie ma ¿adnych synów
+        if(i == 0) { // jeÂ¿eli podaje pierwszy przedmiot z transakcji
+            if(nodes.size() == 0) { // jeÂ¿eli korzeÃ± (null) nie ma Â¿adnych synÃ³w
                 addNodeToTree(n, wsk);
-            } else { // je¿eli ma synów
+            } else { // jeÂ¿eli ma synÃ³w
                 bool is = false; // flaga czy jest taki sam syn
-                for(int i = 0; i < nodes.size(); i++) { // pêtla po synach korzenia
-                    if(n->isTheSameNode(nodes[i])) { // je¿eli jest taki sam
+                for(int i = 0; i < nodes.size(); i++) { // pÃªtla po synach korzenia
+                    if(n->isTheSameNode(nodes[i])) { // jeÂ¿eli jest taki sam
                         nodes[i]->incCounter(); // zwiekszenie licznika o 1
                         wsk = nodes[i];
                         is = true;
                         break;
                     }
                 }
-                if(!is) addNodeToTree(n, wsk); // je¿eli nie ma takiego syna
+                if(!is) addNodeToTree(n, wsk); // jeÂ¿eli nie ma takiego syna
             }
-        } else { // je¿eli podaje nie pierwszy przedmiot transakcji
-            if(wsk->getDown().size() > 1) { // je¿eli wierzcho³ek ma synów
+        } else { // jeÂ¿eli podaje nie pierwszy przedmiot transakcji
+            if(wsk->getDown().size() > 1) { // jeÂ¿eli wierzchoÂ³ek ma synÃ³w
                 bool is = false; // flaga czy jest taki sam syn
-                for(int i = 1; i < wsk->getDown().size(); i++) {// pêtla po synach wierzcho³ka
-                    if(n->isTheSameNode(wsk->getDown()[i])) { // je¿eli jest taki sam
-                        wsk->getDown()[i]->incCounter(); // zwiêkszenie licznika o 1
+                for(int i = 1; i < wsk->getDown().size(); i++) {// pÃªtla po synach wierzchoÂ³ka
+                    if(n->isTheSameNode(wsk->getDown()[i])) { // jeÂ¿eli jest taki sam
+                        wsk->getDown()[i]->incCounter(); // zwiÃªkszenie licznika o 1
                         wsk = wsk->getDown()[i];
                         is = true;
                         break;
                     }
                 }
-                if(!is) { // je¿eli nie ma takiego syna
+                if(!is) { // jeÂ¿eli nie ma takiego syna
                     addNodeToTreeAndHT(n, wsk); // dodaje
-                    setPath(n, wsk); // ustala œcie¿kê
+                    setPath(n, wsk); // ustala Å“cieÂ¿kÃª
                 }
-            } else { // je¿eli wierzcho³ek nie ma synów
+            } else { // jeÂ¿eli wierzchoÂ³ek nie ma synÃ³w
                 addNodeToTreeAndHT(n, wsk); // dodaje
-                setPath(n, wsk); // ustala œcie¿kê
+                setPath(n, wsk); // ustala Å“cieÂ¿kÃª
             }
         }
     }
